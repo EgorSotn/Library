@@ -21,6 +21,7 @@
             foreign key (id_author) references author(id_author)
             on delete cascade
             ON UPDATE CASCADE,
+            UNIQUE (name_book, id_author),
             primary key (id_book)
     );
      create table genre(

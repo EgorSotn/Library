@@ -1,7 +1,9 @@
 package org.example.home.repository.book;
 
 import lombok.val;
+import org.example.home.domain.Author;
 import org.example.home.domain.Book;
+import org.example.home.domain.Genre;
 import org.example.home.repository.author.AuthorRepository;
 import org.hibernate.SessionFactory;
 import org.junit.jupiter.api.DisplayName;
@@ -15,6 +17,8 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Collections;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
@@ -52,5 +56,17 @@ class BookRepositoryCustomImplTest {
 
         assertThat(updatedStudent.getName()).isNotEqualTo(oldName).isEqualTo(BOOK_NAME);
 
+    }
+    @Test
+    void shouldExistBookToReturnBool(){
+        val genre = Collections.singletonList( new Genre("prosa"));
+        val author = new Author("Lermonov", "1812-01-01");
+        val book = new Book("War and Peace", "1834-01-01", genre, author, null);
+        val isNotExist = bookRepository.isExistBook(book);
+        assertFalse(isNotExist);
+        val saveBook = em.merge(book);
+
+        val isExist = bookRepository.isExistBook(saveBook);
+        assertTrue(isExist);
     }
 }

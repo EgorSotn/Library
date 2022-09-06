@@ -16,8 +16,5 @@ public class Main {
         LibraryService bookService = context.getBean(LibraryService.class);
 
 
-
-
-        Console.main(args);
     }
 }
