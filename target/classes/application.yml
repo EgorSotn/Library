@@ -4,22 +4,7 @@ spring:
   shell:
     interactive:
       enabled: true
-#  data:
-#    mongodb:
-#
-#      authentication-database: admin
-#      username: root
-#      password: root
-#      database: Library
-#      port: 27017
-#      host: localhost
   datasource:
-#    url: jdbc:h2:mem:book
-#    username: egor
-#    password: 123
-
-#    schema: schema_book.sql
-#    data: data.sql
 
     url: jdbc:postgresql://localhost:5432/Library
     username: postgres

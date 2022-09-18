@@ -17,7 +17,11 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.context.annotation.Import;
 
 
+import java.util.Collections;
+
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @DisplayName("Test Book dao")
 @DataJpaTest
@@ -131,5 +135,17 @@ class BookDaoJdbcTest {
         assertThat(books.size()).isEqualTo(2);
 
         assertThat(sessionFactory.getStatistics().getPrepareStatementCount()).isEqualTo(EXPECTED_QUERIES_COUNT);
+    }
+    @Test
+    void shouldExistBookToReturnBool(){
+        val genre = Collections.singletonList( new Genre("prosa"));
+        val author = new Author("Lermonov", "1812-01-01");
+        val book = new Book("War and Peace", "1834-01-01", genre, author, null);
+        val isNotExist = bookDaoJdbc.isExistBook(book);
+        assertFalse(isNotExist);
+        val saveBook = em.merge(book);
+
+        val isExist = bookDaoJdbc.isExistBook(saveBook);
+        assertTrue(isExist);
     }
 }

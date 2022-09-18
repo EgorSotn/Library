@@ -68,7 +68,7 @@ public class BookDaoJpa implements BookDao {
         TypedQuery<Book> query = em.createQuery("SELECT DISTINCT b FROM Book b " +
                 "LEFT JOIN FETCH b.genres BG "+
                 "LEFT JOIN FETCH b.author BA " +
-                "WHERE BG.author.nameAuthor = :name_author AND b.name_book = :name_book", Book.class);
+                "WHERE b.author.nameAuthor = :name_author AND b.name = :name_book", Book.class);
         query.setParameter("name_author",book.getAuthor().getNameAuthor());
         query.setParameter("name_book",book.getName());
         List<Book> books = query.getResultList();

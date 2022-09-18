@@ -12,6 +12,7 @@ import javax.persistence.*;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 
 @Data
@@ -78,5 +79,18 @@ public class Book {
                 ", genres=" + genres +
                 ", author=" + author +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Book book = (Book) o;
+        return idBook == book.idBook && Objects.equals(name, book.name) && Objects.equals(year, book.year) && Objects.equals(genres, book.genres) && Objects.equals(author, book.author) && Objects.equals(comments, book.comments);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idBook, name, year, genres, author, comments);
     }
 }
