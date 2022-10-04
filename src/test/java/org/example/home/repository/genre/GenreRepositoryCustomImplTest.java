@@ -30,13 +30,13 @@ class GenreRepositoryCustomImplTest {
     @Test
     void getByNameOrCreate() {
         val firstGenre = em.find(Genre.class,FIRST_GENRE_ID );
-        val actualGenre =  genreRepository.getByNameOrCreate(firstGenre);
+        val actualGenre =  genreRepository.getByNameOrCreate(firstGenre).get();
 
         assertThat(actualGenre).isEqualTo(firstGenre);
 
 
         val newGenre = new Genre(3,"aaaaaaa");
-        val actualGenreElse = genreRepository.getByNameOrCreate(newGenre);
+        val actualGenreElse = genreRepository.getByNameOrCreate(newGenre).get();
         assertThat(actualGenreElse).isEqualTo(newGenre);
     }
 }

@@ -8,6 +8,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.jdbc.EmbeddedDatabaseConnection;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -22,8 +24,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @DataJpaTest
 @ExtendWith(SpringExtension.class)
-
 @AutoConfigureTestDatabase(connection = EmbeddedDatabaseConnection.H2)
+
 class AuthorRepositoryCustomImplTest {
     private static final long FIRST_AUTHOR_ID = 1l;
 
@@ -35,14 +37,16 @@ class AuthorRepositoryCustomImplTest {
     @DisplayName("должен добавлять в бд автора или возвращать по его ")
     @Test
     void getByNameOrCreate() {
+
+
         val firstAuthor = em.find(Author.class, FIRST_AUTHOR_ID);
-        val actualAuthor =  authorRepository.getByNameOrCreate(firstAuthor);
+        val actualAuthor =  authorRepository.getByNameOrCreate(firstAuthor).get();
 
         assertThat(actualAuthor).isEqualTo(firstAuthor);
 
 
         val newAuthor = new Author(2,"aaaaa", "1993-05-11");
-        val actualAuthorElse = authorRepository.getByNameOrCreate(newAuthor);
+        val actualAuthorElse = authorRepository.getByNameOrCreate(newAuthor).get();
         assertThat(actualAuthorElse).isEqualTo(newAuthor);
    //     assertThat(sessionFactory.getStatistics().getPrepareStatementCount()).isEqualTo(EXPECTED_QUERIES_COUNT);
     }

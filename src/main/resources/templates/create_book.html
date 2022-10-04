@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, appUser-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Create book</title>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css">
+</head>
+<body class="container">
+<h1 class="py-5">Add form for create book</h1>
+<a type="submit" class="mb-3 btn btn-dark" href="list.html" th:href="@{/book}">Back to list book</a>
+
+<form method="post" th:action="@{/book/add}" action="create_book.html" th:object="${bookDto}" modelAttribute="bookDto" class="col card p-3 mb-5">
+
+    <div class="form-group">
+        <label for="name-input">Name</label>
+        <input id="name-input" placeholder="Enter Name Book" required type="text" th:field="*{nameBook}"
+               class="form-control"/>
+    </div>
+    <div class="form-group">
+        <label for="year-input">Year</label>
+        <input id="year-input" placeholder="Enter Year Book" required type="text" th:field="*{yearBook}"
+               class="form-control"/>
+    </div>
+    <div class="form-group">
+        <label for="genre-input-name">Genres</label>
+        <input id="genre-input-name" placeholder="Enter Genres" required type="text" th:field="*{namesGenre}"
+               class="form-control"/>
+
+    </div>
+    <div class="form-group">
+        <label for="author-input-name">Author</label>
+        <input id="author-input-name" placeholder="Enter Author Name" required type="text" th:field="*{nameAuthor}"
+               class="form-control"/>
+        <input id="author-input-year" placeholder="Enter Author Year" required type="text" th:field="*{yearAuthor}"
+               class="mt-1 form-control"/>
+    </div>
+
+    <input type="submit" class="btn btn-primary" value="Create Book" >
+</form>
+</body>
+</html>

@@ -9,7 +9,7 @@ import javax.persistence.*;
 
 
 @Entity
-@Table(name = "genre")
+@Table(name = "genres")
 @Data
 @RequiredArgsConstructor
 @AllArgsConstructor

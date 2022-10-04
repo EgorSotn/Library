@@ -1,30 +1,31 @@
-
 spring:
-  shell:
-    interactive:
-      enabled: false
-  datasource:
-    url: jdbc:h2:mem:book
-    initialization-mode: always
-    username: egor
-    password: 123
-    schema: schema_book.sql
-    data: data.sql
-  main:
-    allow-bean-definition-overriding: true
 
+  datasource:
+    url: jdbc:h2:mem:test
+    driverClassName: org.h2.Driver
+#    schema: schema_book.sql
+#    data: data-test.sql
+#    initialization-mode: always
+    username:
+  sql:
+    init:
+      data-locations: classpath:data-test.sql
+      schema-locations: classpath:schema_book.sql
+      mode: always
+
+  #  main:
+#    allow-bean-definition-overriding: true
+#  sql:
+#    init:
+#      mode: always
   jpa:
     show-sql: true
     generate-ddl: false
     hibernate:
       ddl-auto: none
-    shell:
-      interactive:
-        enable: false
+
 
     properties:
       hibernate:
         format_sql: true
 
-server:
-  port: 8080

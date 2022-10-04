@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport"
+          content="width=device-width, appUser-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Edit person</title>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css">
+</head>
+<body class="container">
+
+<!-- Person edition -->
+<a type="submit" class="mt-3 btn btn-dark" href="list.html" th:href="@{/book}">Back To List</a>
+
+<form id="edit-form" action="edit.html" th:action="@{/book/edit/update(id=${bookDto.idBook})}"
+      th:method="POST" class="mt-3 col card p-3 mb-5" th:object="${bookDto}">
+
+    <h1>Book Info:</h1>
+
+    <div class="form-group" >
+        <label for="id-input">ID:</label>
+        <input class="form-control" id="id-input"  type="text" readonly="readonly" th:field="*{idBook}" value="1"/>
+    </div>
+
+    <div class="form-group">
+        <label for="name-input">Name:</label>
+        <input class="form-control" id="name-input" name="name"  type="text" th:field="*{nameBook}" value="name"/>
+    </div>
+
+    <div class="form-group">
+        <label for="year-input">Year:</label>
+        <input class="form-control" id="year-input" name="name" type="text" th:field="*{yearBook}" value="Year"/>
+    </div>
+
+    <div class="form-group">
+        <label for="genres-input">Genres:</label>
+        <input class="form-control" id="genres-input" name="name" type="text" th:field="*{namesGenre}" value="genres"/>
+    </div>
+
+    <div class="form-group">
+        <label for="author-input-name">Author:</label>
+        <input class="form-control" id="author-input-name" name="name"  type="text" th:field="*{nameAuthor}" value="authorName"/>
+        <input class="mt-1 form-control" id="author-input-year" name="name"  type="text" th:field="*{yearAuthor}" value="authorYear"/>
+    </div>
+    <input type="submit" class="btn btn-primary" value="Save">
+
+</form>
+<form class="col card p-3 mb-5" action="edit.html" th:action="@{/book/edit/delete(id=${bookDto.idBook})}" th:method="POST">
+    <input type="submit" class="btn btn-primary" value="Delete">
+
+</form>
+
+
+<div class="form-group">
+
+    <!--    <input type="submit" class="btn btn-primary" value="Save">-->
+    <!--        <input type="submit" class="ml-3 btn btn-primary" value="delete" formmethod="delete">-->
+
+
+
+</div>
+</body>
+</html>

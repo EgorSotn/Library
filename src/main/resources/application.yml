@@ -1,25 +1,23 @@
 #use:
 #  dataProvider: hibernate
 spring:
-  shell:
-    interactive:
-      enabled: true
-  datasource:
 
+  datasource:
     url: jdbc:postgresql://localhost:5432/Library
     username: postgres
     password: westa852
-    initialization-mode: always
+
+  main:
+    allow-bean-definition-overriding: true
   sql:
     init:
+      schema-locations: classpath:schema_book.sql, classpath:schema_user.sql
       mode: always
   jpa:
     show-sql: true
     generate-ddl: true
     hibernate:
       ddl-auto: validate
-
-
 
     properties:
       hibernate:

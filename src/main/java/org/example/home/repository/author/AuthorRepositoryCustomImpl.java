@@ -1,7 +1,7 @@
 package org.example.home.repository.author;
 
 import org.example.home.domain.Author;
-import org.springframework.stereotype.Repository;
+
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -25,7 +25,9 @@ public class AuthorRepositoryCustomImpl implements AuthorRepositoryCustom{
         if (!authors.isEmpty()) {
             return Optional.of( authors.get(0));
         } else {
-            return Optional.of( em.merge(author));
+//            em.persist(author);
+
+            return Optional.of(em.merge( author));
         }
     }
 }

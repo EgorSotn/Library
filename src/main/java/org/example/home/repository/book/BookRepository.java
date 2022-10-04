@@ -9,9 +9,11 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-@Repository
+
 public interface BookRepository extends JpaRepository<Book, Long>, BookRepositoryCustom {
 
+    @Override
+    <S extends Book> S save(S entity);
 
     @EntityGraph(attributePaths = {"author","genres"})
     List<Book> findAll();

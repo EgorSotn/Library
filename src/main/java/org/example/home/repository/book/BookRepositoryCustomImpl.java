@@ -58,4 +58,11 @@ public class BookRepositoryCustomImpl implements BookRepositoryCustom{
 
         return !books.isEmpty();
     }
+
+    @Override
+    public Book update(Book book) {
+        em.flush();
+        em.merge(book);
+         return book;
+    }
 }

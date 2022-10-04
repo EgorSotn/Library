@@ -10,7 +10,7 @@ import lombok.RequiredArgsConstructor;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "author")
+@Table(name = "authors")
 @Data
 @AllArgsConstructor
 @RequiredArgsConstructor

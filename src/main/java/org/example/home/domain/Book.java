@@ -19,7 +19,7 @@ import java.util.Objects;
 @AllArgsConstructor
 @RequiredArgsConstructor
 @Entity
-@Table(name = "book",uniqueConstraints = @UniqueConstraint(columnNames = {"name_book", "id_author" }))
+@Table(name = "books",uniqueConstraints = @UniqueConstraint(columnNames = {"name_book", "id_author" }))
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,19 +30,19 @@ public class Book {
     @Column(name = "year_book")
     private String year;
 
-    @Fetch(FetchMode.SELECT)
-    @ManyToMany(targetEntity = Genre.class, fetch = FetchType.LAZY, cascade = {CascadeType.ALL ,CascadeType.DETACH})
+    @Fetch(FetchMode.JOIN)
+    @ManyToMany(targetEntity = Genre.class, fetch = FetchType.LAZY, cascade = {CascadeType.MERGE})
     @JoinTable(name = "book_genre", joinColumns = @JoinColumn(name = "id_book"),
             inverseJoinColumns = @JoinColumn(name = "id_genre"))
     private List<Genre> genres;
 
-    @Fetch(FetchMode.SELECT)
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @Fetch(FetchMode.JOIN)
+    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     @JoinColumn(name = "id_author")
     private Author author;
 
     @Fetch(FetchMode.SELECT)
-    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL , fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "book", cascade = {CascadeType.MERGE} , fetch = FetchType.LAZY)
     private List<Comment> comments;
 
     public Book(long idBook, String name, String year, Genre genre, Author author, Comment comments) {
