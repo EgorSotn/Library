@@ -1,9 +1,9 @@
 package org.example.home.repository.genre;
 
 import lombok.val;
-import org.example.home.domain.Author;
+
 import org.example.home.domain.Genre;
-import org.example.home.repository.author.AuthorRepository;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -15,7 +15,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
+
 @DataJpaTest
 @ExtendWith(SpringExtension.class)
 @AutoConfigureTestDatabase(connection = EmbeddedDatabaseConnection.H2)
@@ -35,7 +35,7 @@ class GenreRepositoryCustomImplTest {
         assertThat(actualGenre).isEqualTo(firstGenre);
 
 
-        val newGenre = new Genre(3,"aaaaaaa");
+        val newGenre = new Genre(4,"aaaaaaa");
         val actualGenreElse = genreRepository.getByNameOrCreate(newGenre).get();
         assertThat(actualGenreElse).isEqualTo(newGenre);
     }

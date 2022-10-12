@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class BookDto {
     private Long idBook;
+
     private String nameBook;
     private String yearBook;
     private String nameAuthor;

@@ -12,8 +12,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 @EnableWebSecurity
@@ -34,7 +32,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 //Доступ только для не зарегистрированных пользователей
                 .antMatchers("/registered").not().fullyAuthenticated()
                 .and()
-                .authorizeRequests().antMatchers( "/book").hasAnyRole("USER")
+                .authorizeRequests().antMatchers( "/book").hasAnyRole("USER","ADMIN")
                 .and()
                 .authorizeRequests().antMatchers("/book/add/**", "/book/edit/*", "/book/edit/delete/*").hasRole("ADMIN")
                 .and()

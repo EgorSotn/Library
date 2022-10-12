@@ -1,0 +1,32 @@
+version: '1'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    privileged: true
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/Library
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=westa852
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=validate
+    networks:
+      - nw
+  db:
+    image: postgres
+    ports:
+      - "5001:5432"
+    container_name: db
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=westa852
+      - POSTGRES_DB=Library
+    networks:
+      - nw
+networks:
+  nw:

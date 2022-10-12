@@ -50,7 +50,7 @@ public class BookServiceImpl implements BookService{
     @Override
     public Book updateBook(Book updateBook)throws NotFoundException {
         Book book =  bookRepository.findById(updateBook.getIdBook())
-                .orElseThrow(()->new NotFoundException("ds"));
+                .orElseThrow(()->new NotFoundException("book "+updateBook.getIdBook()));
 
         book.setName(updateBook.getName());
         book.setYear(updateBook.getYear());
