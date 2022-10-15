@@ -3,9 +3,9 @@
 spring:
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/Library
-    username: postgres
-    password: westa852
+    url: ${SPRING_DATASOURCE_URL}
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
 
   main:
     allow-bean-definition-overriding: true
@@ -17,7 +17,7 @@ spring:
     show-sql: true
     generate-ddl: true
     hibernate:
-      ddl-auto: validate
+      ddl-auto: ${SPRING_JPA_HIBERNATE_DDL_AUTO}
 
     properties:
       hibernate:
